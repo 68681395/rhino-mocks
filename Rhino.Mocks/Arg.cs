@@ -62,7 +62,7 @@ namespace Rhino.Mocks
 		/// <summary>
 		/// Define a simple constraint for this argument. (Use Matches in simple cases.)
 		/// Example: 
-		///   Arg&lt;int&gt;.Is.Anthing
+		///   Arg&lt;int&gt;.Is.Anything
 		///   Arg&lt;string&gt;.Is.Equal("hello")
 		/// </summary>
 		public static IsArg<T> Is { get { return new IsArg<T>(); } }
@@ -136,6 +136,16 @@ namespace Rhino.Mocks
 		{
 			return Arg<T>.Is.Equal(arg);
 		}
+
+        public static T Matches<T>(Expression<Predicate<T>> predicate)
+        {
+            return Arg<T>.Matches(predicate);
+        }
+
+        public static T Matches<T>(AbstractConstraint<T> constraint)
+        {
+            return Arg<T>.Matches(constraint);
+        }
 	}
 }
 
